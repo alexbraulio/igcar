@@ -1,7 +1,8 @@
 <?php 
 //conectando com o banco de dados /servidor / usuário/ senha.
-$db = mysql_connect("localhost","root","");
+//$db = mysql_connect("localhost","root","");
+$db = mysql_connect("mysql.hostinger.com.br","u737997304_igcar","igcar2015");
 // selecionando banco de tabelas ou banco de dados.
-$dados = mysql_select_db("sistemaigcar", $db);
+$dados = mysql_select_db("u737997304_siste", $db);
 
 ?>

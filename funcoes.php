@@ -88,12 +88,12 @@ header('Location:cliente_pj.php');
 ////
 ////$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ////VEICULOS
-//$sql = "INSERT INTO `sistemaigcar`.`veiculo` (`id`, `placa`, `marca`, `modelo`, `motor`, `cor`, `combustivel`, `fotos`, `cliente_pf`, `cliente_pj`) VALUES (NULL, \'DAX1234\', \'2\', \'56\', \'2.5\', \'PRATA\', \'GASLINA\', \'\', \'9\', \'7\');";
+//$sql = "INSERT INTO `u737997304_siste`.`veiculo` (`id`, `placa`, `marca`, `modelo`, `motor`, `cor`, `combustivel`, `fotos`, `cliente_pf`, `cliente_pj`) VALUES (NULL, \'DAX1234\', \'2\', \'56\', \'2.5\', \'PRATA\', \'GASLINA\', \'\', \'9\', \'7\');";
 ////$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ///////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 //COMANDO sql 
-//INSERT INTO `sistemaigcar`.`veiculo` (`id`, `placa`, `marca`, `modelo`, `motor`, `cor`, `combustivel`, `fotos`, `cliente_pf`, `cliente_pj`) VALUES (NULL, 'DAX1234', '2', '56', '2.5', 'PRATA', 'GASLINA', '', '9', '7');
+//INSERT INTO `u737997304_siste`.`veiculo` (`id`, `placa`, `marca`, `modelo`, `motor`, `cor`, `combustivel`, `fotos`, `cliente_pf`, `cliente_pj`) VALUES (NULL, 'DAX1234', '2', '56', '2.5', 'PRATA', 'GASLINA', '', '9', '7');
 //faz cadastro de novos clientes função grava
 ///FUNÇÃO GRAVA veiculo
 $vgrava_placa 	    =	  $_POST['placa'];
