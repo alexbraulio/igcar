@@ -23,7 +23,7 @@
           <p>Prencha os dados com cuidado.</p>
 <div class="row">
  <?php include "conexao.php";
-  $sql_visualizar = mysql_query("SELECT * FROM veiculo");
+  $sql_visualizar = mysqli_query("SELECT * FROM veiculo");
   ?>
               <div class="col-md-12">
             <form method="post" role="form" action="funcoes.php?funcao=gravar_servico">
@@ -34,8 +34,8 @@
                  <label class="control-label" for="sel1">Placa:</label>
                                    <select name="placa" type="text"class="form-control" id="placa" id="sel1">
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM veiculo");
-                                   while($linhamarca = mysql_fetch_array($sql_visualizar)){
+                                   $sql_visualizar = mysqli_query("SELECT * FROM veiculo");
+                                   while($linhamarca = mysqli_fetch_array($sql_visualizar)){
                                    $marca = utf8_encode($linhamarca ['placa'] ); 
                                    ?>
                                    <option type="text"><?php  echo $marca ?></option>
@@ -102,8 +102,8 @@
   <?php
   //TRAZ OS DADOS PARA EXIBIR NA TELA 
   include "conexao.php";
-  $sql_visualizar = mysql_query("SELECT * FROM servico");
-  while($linha = mysql_fetch_array($sql_visualizar)){
+  $sql_visualizar = mysqli_query("SELECT * FROM servico");
+  while($linha = mysqli_fetch_array($sql_visualizar)){
 $servico_entrada      =   $linha['entrada'];
 $servico_placa        =   $linha['placa'];
 $servico_servico      =   $linha['servico'];

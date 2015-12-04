@@ -16,7 +16,7 @@
 
                          <div class="row">
                          <?php include "conexao.php";
-                         $sql_visualizar = mysql_query("SELECT * FROM uf");
+                         $sql_visualizar = mysqli_query("SELECT * FROM uf");
                          ?>
                               <div class="col-md-12">
                                 <form method="post" role="form" action="funcoes.php?funcao=gravar_cliente_pf">
@@ -44,7 +44,7 @@
                                     <label class="control-label" for="sel1">Estado:</label>
                                    <select name="estado_UF" type="text"class="form-control" id="estado_UF" id="sel1">
                                    <?php  
-                                   while($linhaestado = mysql_fetch_array($sql_visualizar)){
+                                   while($linhaestado = mysqli_fetch_array($sql_visualizar)){
                                    $UF = utf8_encode($linhaestado ['estado'] ); 
                                    ?>
                                    <option type="text"><?php  echo $UF ?></option>
@@ -98,8 +98,8 @@
   //TRAZ OS DADOS PARA EXIBIR NA TELA 
   include "conexao.php";
   
-  $sql_visualizar = mysql_query("SELECT * FROM cliente_pf");
-  while($linha = mysql_fetch_array($sql_visualizar)){
+  $sql_visualizar = mysqli_query("SELECT * FROM cliente_pf");
+  while($linha = mysqli_fetch_array($sql_visualizar)){
   $id = $linha['id'];
   $pega_nome              = $linha['nome'];
   $pega_email             = $linha['email'];

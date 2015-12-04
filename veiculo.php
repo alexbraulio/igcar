@@ -17,7 +17,7 @@
           <p>Prencha os dados com cuidado.</p>
 <div class="row">
  <?php include "conexao.php";
-  $sql_visualizar = mysql_query("SELECT * FROM veiculo");
+  $sql_visualizar = mysqli_query("SELECT * FROM veiculo");
   ?>
               <div class="col-md-12">
             <form method="post" role="form" action="funcoes.php?funcao=gravar_veiculo">
@@ -27,8 +27,8 @@
                  <label class="control-label" for="sel1">Marca:</label>
                                    <select name="marca" type="text"class="form-control" id="marca" id="sel1">
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM marca");
-                                   while($linhamarca = mysql_fetch_array($sql_visualizar)){
+                                   $sql_visualizar = mysqli_query("SELECT * FROM marca");
+                                   while($linhamarca = mysqli_fetch_array($sql_visualizar)){
                                    $marca = utf8_encode($linhamarca ['marca'] ); 
                                    ?>
                                    <option type="text"><?php  echo $marca ?></option>
@@ -39,8 +39,8 @@
                 <label class="control-label" for="sel1">Modelo:</label>
                                    <select name="modelo" type="text"class="form-control" id="modelo" id="sel1">
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM modelo");
-                                   while($linhamodelo = mysql_fetch_array($sql_visualizar)){
+                                   $sql_visualizar = mysqli_query("SELECT * FROM modelo");
+                                   while($linhamodelo = mysqli_fetch_array($sql_visualizar)){
                                    $modelo = utf8_encode($linhamodelo ['modelo'] ); 
                                    ?>
                                    <option type="text"><?php  echo $modelo ?></option>
@@ -68,8 +68,8 @@
                                  <select name="cliente" type="text"class="form-control" id="cliente" id="sel1">
                                    <option disabled="disabled" type="text">Pessoa Física:</option>
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM cliente_pf");
-                                   while($linhamodelo = mysql_fetch_array($sql_visualizar)){
+                                   $sql_visualizar = mysqli_query("SELECT * FROM cliente_pf");
+                                   while($linhamodelo = mysqli_fetch_array($sql_visualizar)){
                                    $modelo = utf8_encode($linhamodelo ['nome'] ); 
                                    
                                    ?>
@@ -77,8 +77,8 @@
                                    <?php } ?>
                                    <option disabled="disabled" type="text">Pessoa Júridica:</option>
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM cliente_pj");
-                                   while($linhamodelo = mysql_fetch_array($sql_visualizar)){
+                                   $sql_visualizar = mysqli_query("SELECT * FROM cliente_pj");
+                                   while($linhamodelo = mysqli_fetch_array($sql_visualizar)){
                                    $modelo = utf8_encode($linhamodelo ['razao_social'] ); 
                                    
                                    ?>
@@ -133,8 +133,8 @@
   <?php
   //TRAZ OS DADOS PARA EXIBIR NA TELA 
   include "conexao.php";
-  $sql_visualizar = mysql_query("SELECT * FROM veiculo");
-  while($linha = mysql_fetch_array($sql_visualizar)){
+  $sql_visualizar = mysqli_query("SELECT * FROM veiculo");
+  while($linha = mysqli_fetch_array($sql_visualizar)){
   $pega_placa      = $linha['placa'];
   $pega_marca             = $linha['marca'];
   $pega_modelo          = $linha['modelo'];
