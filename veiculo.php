@@ -133,8 +133,8 @@
   <?php
   //TRAZ OS DADOS PARA EXIBIR NA TELA 
   include "conexao.php";
-  $sql_visualizar = "SELECT * FROM veiculo";
-  while($linha = mysql_fetch_array($sql_visualizar)){
+  $sql_visualizar = mysqli_query("SELECT * FROM veiculo");
+  while($linha = mysqli_fetch_array($sql_visualizar)){
   $pega_placa      = $linha['placa'];
   $pega_marca             = $linha['marca'];
   $pega_modelo          = $linha['modelo'];
