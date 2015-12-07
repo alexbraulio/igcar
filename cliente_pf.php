@@ -125,7 +125,7 @@
                 <td><?php echo $pega_endereco          ?></td>
                 <td><?php echo $pega_bairro            ?></td>
                 <td><?php echo $pega_cep               ?></td>
-                <td><?php echo $pega_cidade            ?></td>
+                <td type="text"><?php echo $pega_cidade            ?></td>
                 <td><?php echo $pega_estado_UF         ?></td>
                 <td>    
 
