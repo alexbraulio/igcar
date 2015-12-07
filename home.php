@@ -7,7 +7,7 @@
       <div class="jumbotron">
         <h1>SISTEMA | IGCAR <i class="glyphicon glyphicon-wrench"></i></h1>
         <p>Bem vindo ao sistema para cadastro e  consulta de cliente, serviços ou veículos.<br></p>
-        <p>Versão DEMO 1.17.<br></p>
+        <p>Versão DEMO 1.17.5<br></p>
         <iframe src="//giphy.com/embed/10mwAti1muJZcI" width="480" height="199" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p>
     <a href="http://giphy.com/gifs/track-drifting-gt-10mwAti1muJZcI"></a></p>
      </div>
@@ -17,7 +17,7 @@
       <p>
         <a href="home.php" role="button"  type="button" class="btn btn-lg btn-default">HOME </a>
         <a href="veiculo.php" role="button"  type="button" class="btn btn-lg btn-success">VEÍCULOS </a>       
-        <a href="contrato.php" role="button"  type="button" class="btn btn-lg btn-info">INFORMAÇÃO</a> 
+        <a href="contrato.pdf" role="button"  type="button" class="btn btn-lg btn-info">INFORMAÇÃO</a> 
         <a href="servico.php" role="button"  type="button" class="btn btn-lg btn-warning">SERVIÇOS </a> 
          <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModal" >CLIENTES</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

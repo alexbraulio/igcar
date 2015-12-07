@@ -20,8 +20,8 @@
             </thead>
   <?php 
   include "conexao.php";
-  $sql_visualizar = mysqli_query("SELECT * FROM marca ORDER BY marca");
-  while($linha = mysqli_fetch_array($sql_visualizar)){
+  $sql_visualizar = mysql_query("SELECT * FROM marca ORDER BY marca");
+  while($linha = mysql_fetch_array($sql_visualizar)){
   $pega_marca = $linha['marca'];
   ?>
 

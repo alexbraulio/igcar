@@ -8,7 +8,7 @@ $grava_marca = $_POST['marca'];
 if($_GET['funcao'] == "gravar"){
 //conecta e grava no db entra as ()coloque as tabelas que serão inserida os dados, separados por virgula.
 //sempre colocar em ordem de acordo com as variaveis criadas.
-$sql_gravar = mysqli_query("INSERT INTO marca (marca) value ('$grava_marca')");
+$sql_gravar = mysql_query("INSERT INTO marca (marca) value ('$grava_marca')");
 header('Location:home.php');
 }
 
@@ -32,7 +32,7 @@ $grava_estado_UF 	=	  $_POST['estado_UF'];
 
 if($_GET['funcao'] == "gravar_cliente_pf"){
 
-$sql_gravar = mysqli_query("INSERT INTO cliente_pf (nome, email, telefone, celular, CPF, endereco, bairro, cep, cidade, estado_UF) value
+$sql_gravar = mysql_query("INSERT INTO cliente_pf (nome, email, telefone, celular, CPF, endereco, bairro, cep, cidade, estado_UF) value
 	(
 '$grava_nome', 	
 '$grava_email', 			
@@ -70,7 +70,7 @@ $pjgrava_estado_UF 	    =	  $_POST['estado_UF'];
 
 if($_GET['funcao'] == "gravar_cliente_pj"){
 
-$sql_gravar = mysqli_query("INSERT INTO cliente_pj (razao_social, email, telefone, celular, CNPJ, endereco, bairro, cep, cidade, estado_UF) value
+$sql_gravar = mysql_query("INSERT INTO cliente_pj (razao_social, email, telefone, celular, CNPJ, endereco, bairro, cep, cidade, estado_UF) value
 	(
 '$pjgrava_razao_social', 	
 '$pjgrava_email', 			
@@ -107,7 +107,7 @@ $vgrava_cliente 		=	  $_POST['cliente'];
 
 if($_GET['funcao'] == "gravar_veiculo"){
 
-$sql_gravar = mysqli_query("INSERT INTO veiculo (
+$sql_gravar = mysql_query("INSERT INTO veiculo (
 	placa, marca, modelo, motor, cor, combustivel, fotos, cliente) value
 	(
 '$vgrava_placa', 	
@@ -133,7 +133,7 @@ $servico_valor 	=	  $_POST['valor'];
 
 if($_GET['funcao'] == "gravar_servico"){
 
-$sql_gravar = mysqli_query("INSERT INTO servico (
+$sql_gravar = mysql_query("INSERT INTO servico (
 	entrada, placa, servico, descricao, saida, valor) value
 	(
 '$servico_entrada', 	
@@ -160,7 +160,7 @@ header('Location:servico.php');
 
 if($_GET['funcao'] == "editar_cliente_pf"){
 $id = $_GET['id'];
-$sql_alterar = mysqli_query("UPDATE cliente_pf SET 
+$sql_alterar = mysql_query("UPDATE cliente_pf SET 
 nome='$grava_nome', 	               	
 email='$grava_email', 			               
 telefone='$grava_telefone',                
@@ -187,7 +187,7 @@ header('Location:cliente_pf.php');
 
 if($_GET['funcao'] == "editar_cliente_pj"){
 $id = $_GET['id'];
-$sql_alterar = mysqli_query("UPDATE cliente_pj SET 
+$sql_alterar = mysql_query("UPDATE cliente_pj SET 
  razao_social='$pjgrava_razao_social',	              	
  email='$pjgrava_email', 			               
  telefone='$pjgrava_telefone',                
@@ -213,7 +213,7 @@ header('Location:cliente_pj.php');
 
 if($_GET['funcao'] == "editar_servico"){
 $id = $_GET['id'];
-$sql_alterar = mysqli_query("UPDATE servico SET 
+$sql_alterar = mysql_query("UPDATE servico SET 
  entrada='$servico_entrada',	              	
  placa='$servico_placa', 			               
  servico='$servico_servico',                
@@ -235,7 +235,7 @@ header('Location:servico.php');
 
 if($_GET['funcao'] == "editar_veiculo"){
 $id = $_GET['id'];
-$sql_alterar = mysqli_query("UPDATE veiculo SET 
+$sql_alterar = mysql_query("UPDATE veiculo SET 
 placa='$vgrava_placa',	              	
 marca='$vgrava_marca', 			               
 modelo='$vgrava_modelo',                
@@ -270,7 +270,7 @@ header('Location:veiculo.php');
 ////FUNÇÃO PARA EXCLUIR O carro
 if($_GET['funcao'] == "excluir_servico"){
 $id = $_GET['id'];
-$sql_del = mysqli_query("DELETE FROM servico WHERE id = '$id'");
+$sql_del = mysql_query("DELETE FROM servico WHERE id = '$id'");
 
 header('Location:servico.php');
 }
@@ -279,7 +279,7 @@ header('Location:servico.php');
 ////FUNÇÃO PARA EXCLUIR O carro
 if($_GET['funcao'] == "excluir_veiculo"){
 $id = $_GET['id'];
-$sql_del = mysqli_query("DELETE FROM veiculo WHERE id = '$id'");
+$sql_del = mysql_query("DELETE FROM veiculo WHERE id = '$id'");
 
 header('Location:veiculo.php');
 }
@@ -289,7 +289,7 @@ header('Location:veiculo.php');
 ////FUNÇÃO PARA EXCLUIR O CONTEUDO
 if($_GET['funcao'] == "excluir_cliente_pf"){
 $id = $_GET['id'];
-$sql_del = mysqli_query("DELETE FROM cliente_pf WHERE id = '$id'");
+$sql_del = mysql_query("DELETE FROM cliente_pf WHERE id = '$id'");
 
 header('Location:cliente_pf.php');
 }
@@ -300,7 +300,7 @@ header('Location:cliente_pf.php');
 ////FUNÇÃO PARA EXCLUIR O CONTEUDO
 if($_GET['funcao'] == "excluir_cliente_pj"){
 $id = $_GET['id'];
-$sql_del = mysqli_query("DELETE FROM cliente_pj WHERE id = '$id'");
+$sql_del = mysql_query("DELETE FROM cliente_pj WHERE id = '$id'");
 
 header('Location:cliente_pj.php');
 }
