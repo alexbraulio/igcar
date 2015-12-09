@@ -17,7 +17,7 @@
       <p>
         <a href="home.php" role="button"  type="button" class="btn btn-lg btn-default">HOME </a>
         <a href="veiculo.php" role="button"  type="button" class="btn btn-lg btn-success">VEÍCULOS </a>       
-        <a href="contrato.pdf" role="button"  type="button" class="btn btn-lg btn-info">INFORMAÇÃO</a> 
+        <a href="igcar.pdf" role="button"  type="button" class="btn btn-lg btn-info">INFORMAÇÃO</a> 
         <a href="servico.php" role="button"  type="button" class="btn btn-lg btn-warning">SERVIÇOS </a> 
          <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModal" >CLIENTES</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
