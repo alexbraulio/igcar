@@ -16,10 +16,13 @@
           <div class="modal-body">
           <p>Prencha os dados com cuidado.</p>
 <div class="row">
- <?php include "conexao.php";
-  $sql_visualizar = mysql_query("SELECT * FROM veiculo");
-  ?>
-              <div class="col-md-12">
+  <?php  
+  include "conexao.php";
+  $Veiculos=$pdo->prepare("SELECT * FROM veiculo");
+  
+                                   
+                                   ?>
+               <div class="col-md-12">
             <form method="post" role="form" action="funcoes.php?funcao=gravar_veiculo">
               <div class="form-group">
                 <label class="control-label" for="marca">Placa:</label>
@@ -27,11 +30,11 @@
                  <label class="control-label" for="sel1">Marca:</label>
                                    <select name="marca" type="text"class="form-control" id="marca" id="sel1">
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM marca");
-                                   while($linhamarca = mysql_fetch_array($sql_visualizar)){
-                                   $marca = utf8_encode($linhamarca ['marca'] ); 
-                                   ?>
-                                   <option type="text"><?php  echo $marca ?></option>
+                                   $sql_visualizar =$pdo->prepare("SELECT * FROM marca");
+                                   $sql_visualizar->execute();
+                                   while($linhamarca =$sql_visualizar->fetch(PDO::FETCH_ASSOC)){
+                                                                   ?>
+                                   <option type="text"><?php  echo $linhamarca ['marca'] ?></option>
                                    <?php } ?>
                                    </select>
                                    </div>
@@ -39,11 +42,12 @@
                 <label class="control-label" for="sel1">Modelo:</label>
                                    <select name="modelo" type="text"class="form-control" id="modelo" id="sel1">
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM modelo");
-                                   while($linhamodelo = mysql_fetch_array($sql_visualizar)){
-                                   $modelo = utf8_encode($linhamodelo ['modelo'] ); 
+                                   $sql_visualizar = $pdo->prepare("SELECT * FROM modelo");
+                                   $sql_visualizar->execute();
+                                   while($linhamodelo = $sql_visualizar->fetch(PDO::FETCH_ASSOC)){
+                                  
                                    ?>
-                                   <option type="text"><?php  echo $modelo ?></option>
+                                   <option type="text"><?php  echo  $linhamodelo ['modelo'] ?></option>
                                    <?php } ?>
                                    </select>
                                 
@@ -68,26 +72,27 @@
                                  <select name="cliente" type="text"class="form-control" id="cliente" id="sel1">
                                    <option disabled="disabled" type="text">Pessoa Física:</option>
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM cliente_pf");
-                                   while($linhamodelo = mysql_fetch_array($sql_visualizar)){
-                                   $modelo = utf8_encode($linhamodelo ['nome'] ); 
-                                   
+                                   $sql_visualizar = $pdo->prepare("SELECT * FROM cliente_pf");
+                                   $sql_visualizar->execute();
+                                   while($linhamodelo = $sql_visualizar->fetch(PDO::FETCH_ASSOC)){
+                                                                     
                                    ?>
-                                   <option ><?php  echo $modelo ?></option>
+                                   <option ><?php  echo $linhamodelo ['nome'] ?></option>
                                    <?php } ?>
                                    <option disabled="disabled" type="text">Pessoa Júridica:</option>
                                    <?php  
-                                   $sql_visualizar = mysql_query("SELECT * FROM cliente_pj");
-                                   while($linhamodelo = mysql_fetch_array($sql_visualizar)){
-                                   $modelo = utf8_encode($linhamodelo ['razao_social'] ); 
-                                   
+                                   $sql_visualizar = $pdo->prepare("SELECT * FROM cliente_pj");
+                                   $sql_visualizar->execute();
+                                   while($linhamodelo = $sql_visualizar->fetch(PDO::FETCH_ASSOC)){
+                                                                 
                                    ?>
-                                   <option><?php  echo $modelo ?></option>
+                                   <option><?php  echo $linhamodelo ['razao_social'] ?></option>
                                    <?php } ?>
                                    </select>
              
               <button type="submit" class="btn btn-default">Cadastrar.</button>
                </div>
+            
             </form>
           </div>
         </div>
@@ -133,36 +138,27 @@
   <?php
   //TRAZ OS DADOS PARA EXIBIR NA TELA 
   include "conexao.php";
-  $sql_visualizar = mysql_query("SELECT * FROM veiculo");
-  while($linha = mysql_fetch_array($sql_visualizar)){
-  $pega_placa      = $linha['placa'];
-  $pega_marca             = $linha['marca'];
-  $pega_modelo          = $linha['modelo'];
-  $pega_motor           = $linha['motor'];
-  $pega_cor              = $linha['cor'];
-  $pega_combustivel          = $linha['combustivel'];
-  $pega_fotos            = $linha['fotos'];
-  $pega_cliente            = $linha['cliente'];
- 
-
-  $id = $linha['id'];
+  $sql_visualizar = $pdo->prepare("SELECT * FROM veiculo");
+  $sql_visualizar->execute();
+  while($linha =$sql_visualizar->fetch(PDO::FETCH_ASSOC)){
+   $id = $linha['id'];
 
   ?>
 </div>  
    <tbody>
                 <tr>
-                <td><?php echo $pega_placa      ?></td>
-                <td><?php echo $pega_marca             ?></td>
-                <td><?php echo $pega_modelo          ?></td>
-                <td><?php echo $pega_motor           ?></td>
-                <td><?php echo $pega_cor              ?></td>
-                <td><?php echo $pega_combustivel          ?></td>
-                <td><?php echo $pega_fotos            ?></td>
-                <td><?php echo $pega_cliente            ?></td>
+                <td><?php echo       $linha["placa"];                      ?></td>
+                <td><?php echo       $linha["marca"];                      ?></td>
+                <td><?php echo       $linha["modelo"];                     ?></td>
+                <td><?php echo       $linha["motor"];                      ?></td>
+                <td><?php echo       $linha["cor"];                        ?></td>
+                <td><?php echo       $linha["combustivel"];                ?></td>
+                <td><?php echo       $linha["fotos"];                      ?></td>
+                <td><?php echo       $linha["cliente"];                    ?></td>
               
                 <td>       
-  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal22<?php echo $id  ?>">Editar.</button>
-  <div class="modal fade" id="myModal22<?php echo $id  ?>" role="dialog">
+  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal22<?php echo  $linha['id']  ?>">Editar.</button>
+  <div class="modal fade" id="myModal22<?php echo  $linha['id']  ?>" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -173,30 +169,25 @@
           <p>Somente Pessoa Jurídica</p>
 
 <div class="row">
- <?php include "conexao.php";
-
-
-
-  ?>
-          <div class="col-md-12">
-            <form method="post" role="form" enctype="multipart/form-data" action="funcoes.php?funcao=editar_veiculo&id=<?php echo $id ?>">
+     <div class="col-md-12">
+            <form method="post" role="form" enctype="multipart/form-data" action="funcoes.php?funcao=editar_veiculo&id=<?php echo  $linha['id'] ?>">
               <div class="form-group">
                 <label class="control-label" for="marca">Razão Social:</label>
-                <input name="placa" type="text"class="form-control" id="placa" value="<?php echo $pega_placa      ?>">
+                <input name="placa" type="text"class="form-control" id="placa" value="<?php echo   $linha['placa'];                             ?>">
                 <label class="control-label" for="marca">Marca:</label>
-                <input name="marca" type="text"class="form-control" id="marca" value="<?php echo $pega_marca             ?>">
+                <input name="marca" type="text"class="form-control" id="marca" value="<?php echo   $linha['marca'];                                    ?>">
                 <label class="control-label" for="marca">Modelo:</label>
-                <input name="modelo" type="text"class="form-control" id="modelo" value="<?php echo $pega_modelo          ?>">
+                <input name="modelo" type="text"class="form-control" id="modelo" value="<?php echo   $linha['modelo'];                                 ?>">
                 <label class="control-label" for="marca">Motor:</label>
-                <input name="motor" type="text"class="form-control" id="motor" value="<?php echo $pega_motor           ?>">
+                <input name="motor" type="text"class="form-control" id="motor" value="<?php echo   $linha['motor'];                                  ?>">
                 <label class="control-label" for="marca">Cor:</label>
-                <input name="cor" type="text"class="form-control" id="cor" value="<?php echo $pega_cor              ?>">
+                <input name="cor" type="text"class="form-control" id="cor" value="<?php echo   $linha['cor'];                                     ?>">
                 <label class="control-label" for="marca">Combustivel:</label>
-                <input name="combustivel" type="text"class="form-control" id="combustivel" value="<?php echo $pega_combustivel          ?>">
+                <input name="combustivel" type="text"class="form-control" id="combustivel" value="<?php echo   $linha['combustivel'];                                 ?>">
                 <label class="control-label" for="marca">Fotos:</label>
-                <imput type="file" name="fotos"  src="<?php echo $pega_fotos            ?>" />
+                <imput type="file" name="fotos"  src="<?php echo   $linha['fotos'];                                   ?>" />
                 <label class="control-label" for="marca">Cliente:</label>
-                <input name="cliente" type="text"class="form-control" id="cliente" value="<?php echo $pega_cliente            ?>">
+                <input name="cliente" type="text"class="form-control" id="cliente" value="<?php echo   $linha['cliente'];                                   ?>">
                
                 
               </div>
@@ -219,8 +210,8 @@
     </div>
   </div>
 </div></td>
-       <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal<?php echo $id  ?>" >Excluir</button>
-<div class="modal fade" id="exampleModal<?php echo $id  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+       <td><button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#exampleModal<?php echo  $linha['id']  ?>" >Excluir</button>
+<div class="modal fade" id="exampleModal<?php echo  $linha['id']  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -229,7 +220,7 @@
       </div>
      
       <div class="modal-body">
-         <a href="funcoes.php?funcao=excluir_veiculo&id=<?php echo $id ?>" role="button"  type="button" class="btn btn-lg btn-danger">Excluir </a> 
+         <a href="funcoes.php?funcao=excluir_veiculo&id=<?php echo  $linha['id'] ?>" role="button"  type="button" class="btn btn-lg btn-danger">Excluir </a> 
       </div>
   
     </div>
@@ -238,8 +229,8 @@
                 </tr> 
                 <?php 
                 }
+
                  ?>             
             </tbody>
   </table>
 </div>
-

@@ -16,7 +16,7 @@
 
                          <div class="row">
                          <?php include "conexao.php";
-                         $sql_visualizar = mysql_query("SELECT * FROM uf");
+                         $sql_visualizar = $pdo->query("SELECT * FROM uf");
                          ?>
                               <div class="col-md-12">
                                 <form method="post" role="form" action="funcoes.php?funcao=gravar_cliente_pf">
@@ -44,10 +44,13 @@
                                     <label class="control-label" for="sel1">Estado:</label>
                                    <select name="estado_UF" type="text"class="form-control" id="estado_UF" id="sel1">
                                    <?php  
-                                   while($linhaestado = mysql_fetch_array($sql_visualizar)){
-                                   $UF = utf8_encode($linhaestado ['estado'] ); 
+                                   include "conexao.php";
+  $razao_social=$pdo->prepare("SELECT * FROM uf");
+  $razao_social->execute();
+  while ($linha=$razao_social->fetch(PDO::FETCH_ASSOC)) {
+                                   
                                    ?>
-                                   <option type="text"><?php  echo $UF ?></option>
+                                   <option type="text"><?php  echo $linha ['estado'] ?></option>
                                    <?php } ?>
                                    </select>
                                    </div>
@@ -97,42 +100,31 @@
   <?php
   //TRAZ OS DADOS PARA EXIBIR NA TELA 
   include "conexao.php";
-  
-  $sql_visualizar = mysql_query("SELECT * FROM cliente_pf");
-  while($linha = mysql_fetch_array($sql_visualizar)){
-  $id = $linha['id'];
-  $pega_nome              = $linha['nome'];
-  $pega_email             = $linha['email'];
-  $pega_telefone          = $linha['telefone'];
-  $pega_celular           = $linha['celular'];
-  $pega_CPF               = $linha['CPF'];
-  $pega_endereco          = $linha['endereco'];
-  $pega_bairro            = $linha['bairro'];
-  $pega_cep               = $linha['cep'];
-  $pega_cidade            = $linha['cidade'];
-  $pega_estado_UF         = $linha['estado_UF'];
-  
 
+  $sql_visualizar=$pdo->prepare("SELECT * FROM cliente_pf");
+  $sql_visualizar->execute();
+  while ($linha=$sql_visualizar->fetch(PDO::FETCH_ASSOC)) {
+  $id = $linha['id'];
   ?>
 </div>  
    <tbody>
                 <tr>
-                <td><?php echo $pega_nome              ?></td>
-                <td><?php echo $pega_email             ?></td>
-                <td><?php echo $pega_telefone          ?></td>
-                <td><?php echo $pega_celular           ?></td>
-                <td><?php echo $pega_CPF               ?></td>
-                <td><?php echo $pega_endereco          ?></td>
-                <td><?php echo $pega_bairro            ?></td>
-                <td><?php echo $pega_cep               ?></td>
-                <td type="text"><?php echo $pega_cidade            ?></td>
-                <td><?php echo $pega_estado_UF         ?></td>
+                <td><?php echo                                $linha["nome"];                                    ?></td>
+                <td><?php echo                               $linha["email"];                                    ?></td>
+                <td><?php echo                            $linha["telefone"];                                    ?></td>
+                <td><?php echo                             $linha["celular"];                                    ?></td>
+                <td><?php echo                                 $linha["CPF"];                                    ?></td>
+                <td><?php echo                            $linha["endereco"];                                    ?></td>
+                <td><?php echo                              $linha["bairro"];                                    ?></td>
+                <td><?php echo                                 $linha["cep"];                                    ?></td>
+                <td type="text"><?php echo                  $linha["cidade"];                                    ?></td>
+                <td><?php echo                           $linha["estado_UF"];                                    ?></td>
                 <td>    
 
   
-<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal22<?php echo $id ?>">
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal22<?php echo $linha['id'];?>">
     Editar.</button>
-  <div class="modal fade" id="myModal22<?php echo $id ?>" role="dialog">
+  <div class="modal fade" id="myModal22<?php echo $linha['id']; ?>" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -140,36 +132,36 @@
           <h4 class="modal-title">Cadastro de Cliente.</h4>
         </div>
           <div class="modal-body">
-          <p>Somente Pessoa Jurídica</p>
+          <p>Somente Pessoa Física</p>
 
 
 
 <div class="row">
           <div class="col-md-12">
-            <form method="post" role="form" action="funcoes.php?funcao=editar_cliente_pf&id=<?php echo $id ?>">
+            <form method="post" role="form" action="funcoes.php?funcao=editar_cliente_pf&id=<?php echo $linha['id']; ?>">
 
               <div class="form-group">
                 <label class="control-label" for="marca">Nome:</label>
-                <input name="nome" type="text"class="form-control" id="nome" value="<?php echo $pega_nome      ?>">
+                <input name="nome" type="text"class="form-control" id="nome" value="<?php echo   $linha["nome"];       ?>">
                 <label class="control-label" for="marca">E-mail:</label>
-                <input name="email" type="text"class="form-control" id="email" value="<?php echo $pega_email             ?>">
+                <input name="email" type="text"class="form-control" id="email" value="<?php echo     $linha["email"];                               ?>">
                 <label class="control-label" for="marca">Telefone:</label>
-                <input name="telefone" type="text"class="form-control" id="telefone" value="<?php echo $pega_telefone          ?>">
+                <input name="telefone" type="text"class="form-control" id="telefone" value="<?php echo  $linha["telefone"];                               ?>">
                 <label class="control-label" for="marca">Celular:</label>
-                <input name="celular" type="text"class="form-control" id="celular" value="<?php echo $pega_celular           ?>">
+                <input name="celular" type="text"class="form-control" id="celular" value="<?php echo   $linha["celular"];                               ?>">
                 <label class="control-label" for="marca">CPF:</label>
-                <input name="CPF" type="text"class="form-control" id="CPF" value="<?php echo $pega_CPF              ?>">
+                <input name="CPF" type="text"class="form-control" id="CPF" value="<?php echo       $linha["CPF"];                              ?>">
                 <label class="control-label" for="marca">Endereço:</label>
-                <input name="endereco" type="text"class="form-control" id="endereco" value="<?php echo $pega_endereco          ?>">
+                <input name="endereco" type="text"class="form-control" id="endereco" value="<?php echo  $linha["endereco"];                               ?>">
                 <label class="control-label" for="marca">Bairro:</label>
-                <input name="bairro" type="text"class="form-control" id="bairro" value="<?php echo $pega_bairro            ?>">
+                <input name="bairro" type="text"class="form-control" id="bairro" value="<?php echo    $linha["bairro"];                               ?>">
                 <label class="control-label" for="marca">Cep:</label>
-                <input name="cep" type="text"class="form-control" id="cep" value="<?php echo $pega_cep               ?>">
+                <input name="cep" type="text"class="form-control" id="cep" value="<?php echo       $linha["cep"];                               ?>">
                 <label class="control-label" for="marca">Cidade:</label>
-                <input name="cidade" type="text"class="form-control" id="cidade" value="<?php echo $pega_cidade            ?>">
+                <input name="cidade" type="text"class="form-control" id="cidade" value="<?php echo    $linha["cidade"];                               ?>">
                 <label class="control-label" for="marca">Estado:</label>
 
-                <input name="estado_UF" type="text"class="form-control" id="estado_UF" value="<?php echo $pega_estado_UF            ?>">
+                <input name="estado_UF" type="text"class="form-control" id="estado_UF" value="<?php echo $linha["estado_UF"];                                  ?>">
               
               </div>
 
