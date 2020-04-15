@@ -1,7 +1,5 @@
 <?php 
-
- include "nav.php";
-
+include "nav.php";
 ?>
     <div class="container theme-showcase" role="main">
       <div class="jumbotron">
